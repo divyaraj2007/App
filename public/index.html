@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Desk</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="loginPanel" class="login-panel">
+        <div>
+          <p class="eyebrow">Secure Access</p>
+          <h1>Attendance Login</h1>
+        </div>
+        <form id="loginForm" class="login-form">
+          <input id="username" type="text" placeholder="Username" autocomplete="username" required />
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" required />
+          <button type="submit">Login</button>
+        </form>
+        <div class="demo-logins">
+          <span>Student: Aarav Sharma / Aarav Sharma123</span>
+          <span>Teacher: Anita Rao / Anita Rao123</span>
+          <span>Principal: principal / principal123</span>
+        </div>
+      </section>
+
+      <div id="appPanel" class="hidden">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Attendance</p>
+          <h1>Daily Register</h1>
+          <p id="roleLine" class="role-line"></p>
+        </div>
+        <div class="top-actions">
+          <div id="targetField" class="date-field hidden">
+            <label for="targetSelect">Register</label>
+            <select id="targetSelect">
+              <option value="students">Students</option>
+              <option value="teachers">Teachers</option>
+            </select>
+          </div>
+          <div class="date-field">
+            <label for="sessionDate">Session date</label>
+            <input id="sessionDate" type="date" />
+          </div>
+          <button id="logoutButton" type="button" class="secondary">Logout</button>
+        </div>
+      </section>
+
+      <section class="summary-grid" aria-label="Attendance summary">
+        <article class="summary-card present">
+          <span>Present</span>
+          <strong id="presentCount">0</strong>
+        </article>
+        <article class="summary-card absent">
+          <span>Absent</span>
+          <strong id="absentCount">0</strong>
+        </article>
+        <article class="summary-card late">
+          <span>Late</span>
+          <strong id="lateCount">0</strong>
+        </article>
+        <article class="summary-card total">
+          <span>Total</span>
+          <strong id="totalCount">0</strong>
+        </article>
+      </section>
+
+      <section class="controls" aria-label="Attendance controls">
+        <form id="addStudentForm" class="add-form">
+          <input id="studentName" type="text" placeholder="Name" autocomplete="off" required />
+          <input id="personDetail" type="text" placeholder="Standard" autocomplete="off" required />
+          <button type="submit">Add</button>
+        </form>
+        <div class="tools">
+          <input id="searchInput" type="search" placeholder="Search names" />
+          <button id="faceAttendance" type="button">Face attendance</button>
+          <button id="markAllPresent" type="button">Mark all present</button>
+          <button id="exportCsv" type="button">Export CSV</button>
+        </div>
+      </section>
+
+      <section id="facePanel" class="face-panel hidden" aria-label="Face attendance camera">
+        <div>
+          <p class="eyebrow">Camera</p>
+          <h2 id="faceTitle">Face attendance</h2>
+          <p id="cameraStatus" class="camera-status">Camera is off.</p>
+        </div>
+        <div class="camera-frame">
+          <video id="cameraVideo" autoplay muted playsinline></video>
+          <canvas id="faceCanvas" width="160" height="160" hidden></canvas>
+        </div>
+        <div class="camera-actions">
+          <button id="captureFace" type="button">Capture</button>
+          <button id="closeCamera" type="button" class="secondary">Close camera</button>
+        </div>
+      </section>
+
+      <section class="register-panel">
+        <div class="register-head">
+          <span>Name</span>
+          <span id="detailHead">Standard</span>
+          <span>Status</span>
+          <span>Notes</span>
+          <span>Action</span>
+        </div>
+        <div id="attendanceList" class="attendance-list"></div>
+        <p id="emptyState" class="empty-state">Add a person to begin marking attendance.</p>
+      </section>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
